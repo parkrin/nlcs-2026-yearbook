@@ -658,20 +658,21 @@ This product is a custom-made item. Refunds due to simple change of mind are not
     IMP.init(IMP_CODE);
 
     IMP.request_pay({
-      channel_key: 'channel-key-2fa15a81-d5a9-49c4-804c-68b347ffe9ce',
+      pg: 'html5_inicis.INIpayTest',
       pay_method: 'card',
       merchant_uid: merchantUid,
       name: '2026 NLCS Jeju Year Book x' + qty,
       amount: totalAmount,
       buyer_name: parentName,
       buyer_tel: contact,
-      custom_data: {
+      buyer_email: '',
+      custom_data: JSON.stringify({
         student_name: studentName,
         parent_name: parentName,
         contact: contact,
         quantity: qty,
         pickup_method: '학교 수령'
-      }
+      })
     }, function(rsp) {
       btn.classList.remove('loading');
       if (rsp.success) {

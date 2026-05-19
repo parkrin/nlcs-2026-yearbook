@@ -297,6 +297,12 @@
 <div class="success-overlay" id="successOverlay">
   <div class="success-crest">✓</div>
   <div class="success-title">결제가 완료되었습니다<br><span style="font-size:0.85em;color:var(--gold-light);font-weight:300">Payment Complete</span></div>
+  <div style="background:rgba(184,151,42,0.08);border:0.5px solid rgba(184,151,42,0.25);border-radius:4px;padding:14px 20px;width:100%;max-width:300px;margin:0.5rem 0;">
+    <div style="font-size:11px;color:var(--text-muted);margin-bottom:8px;letter-spacing:0.1em;">주문 내역 · Order Summary</div>
+    <div style="font-size:13px;color:var(--cream);margin-bottom:4px;">2026 NLCS Jeju Year Book</div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">수량: <span id="successQty" style="color:var(--cream);">1</span>권</div>
+    <div style="font-size:16px;font-weight:500;color:var(--gold-light);margin-top:8px;padding-top:8px;border-top:0.5px solid rgba(184,151,42,0.2);">총 결제금액: <span id="successTotal">₩58,300</span></div>
+  </div>
   <div class="success-sub">주문해 주셔서 감사합니다.<br>Thank you for your order.</div>
 </div>
 
@@ -360,7 +366,7 @@
     <div class="s1-subtitle">NLCS Jeju · 졸업 앨범</div>
 
     <div class="s1-price-row">
-      <div class="s1-price">₩100</div>
+      <div class="s1-price">₩58,300</div>
       <div class="s1-price-note">/ 권당 · per copy</div>
     </div>
 
@@ -428,7 +434,7 @@
       주문 상품
       <strong>2026 NLCS Jeju Year Book</strong>
     </div>
-    <div class="order-summary-price">₩100</div>
+    <div class="order-summary-price">₩58,300</div>
   </div>
 
   <form id="orderForm" onsubmit="handleSubmit(event)">
@@ -470,7 +476,7 @@
 
     <div class="total-bar">
       <div class="total-label">합계 · Total</div>
-      <div class="total-value" id="totalDisplay">₩100</div>
+      <div class="total-value" id="totalDisplay">₩58,300</div>
     </div>
 
     <div class="notice-box">
@@ -526,7 +532,7 @@
 
 <script>
   let qty = 1;
-  const unitPrice = 100;
+  const unitPrice = 58300;
   let curSlide = 0;
   let miniCurSlide = 0;
   const totalSlides = 3;
@@ -671,7 +677,7 @@ This product is a custom-made item. Refunds due to simple change of mind are not
       merchant_uid: merchantUid,
       name: '2026 NLCS Jeju Year Book x' + qty,
       amount: totalAmount,
-      buyer_name: parentName,
+      buyer_name: studentName + '/' + parentName,
       buyer_tel: contact,
       buyer_email: '',
       custom_data: JSON.stringify({
@@ -684,6 +690,8 @@ This product is a custom-made item. Refunds due to simple change of mind are not
     }, function(rsp) {
       btn.classList.remove('loading');
       if (rsp.success) {
+        document.getElementById('successQty').textContent = qty;
+        document.getElementById('successTotal').textContent = '₩' + (unitPrice * qty).toLocaleString('ko-KR');
         document.getElementById('successOverlay').classList.add('show');
       } else {
         errorMsg.textContent = '결제 실패: ' + rsp.error_msg;

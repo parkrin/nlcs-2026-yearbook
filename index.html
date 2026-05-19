@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>2026 NLCS Jeju Year Book — Pre-Order</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d1b2e;
+    --navy-mid: #162640;
+    --gold: #b8972a;
+    --gold-light: #d4ad3a;
+    --gold-pale: #f0e6c0;
+    --cream: #f7f3ea;
+    --white: #ffffff;
+    --text-muted: #8a9ab5;
+    --border: rgba(184,151,42,0.25);
+    --font: 'Noto Sans KR', sans-serif;
+  }
+
+  body {
+    font-family: var(--font);
+    background: var(--navy);
+    color: var(--cream);
+    min-height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  .step { display: none; min-height: 100vh; flex-direction: column; }
+  .step.active { display: flex; }
+
+  /* ══ STEP 1 ══ */
+  #step1 { padding: 0; flex-direction: column; }
+
+  .s1-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 1.25rem 1.2rem;
+  }
+
+  .nlcs-logo { height: 38px; width: auto; object-fit: contain; }
+
+  .nlcs-crest { display: flex; align-items: center; gap: 8px; }
+
+  .nlcs-crest-icon {
+    width: 32px; height: 32px;
+    border: 1px solid rgba(184,151,42,0.4); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--gold);
+  }
+
+  .nlcs-crest-label { font-size: 10px; letter-spacing: 0.1em; color: var(--text-muted); font-weight: 300; }
+
+  .slider-wrap {
+    width: 100%; position: relative; overflow: hidden;
+    background: var(--navy-mid);
+    border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
+  }
+
+  .slider-track { display: flex; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
+
+  .slide {
+    min-width: 100%; height: 300px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; flex-shrink: 0;
+  }
+
+  .slide-1 { background: linear-gradient(145deg, #162640 0%, #0d1b2e 70%); }
+  .slide-2 { background: linear-gradient(145deg, #1a2e4a 0%, #0f2035 70%); }
+  .slide-3 { background: linear-gradient(145deg, #0e1f33 0%, #0a1520 70%); }
+
+  .slide-inner { display: flex; flex-direction: column; align-items: center; gap: 14px; position: relative; z-index: 1; }
+
+  .slide-book-num {
+    position: absolute; right: 1.5rem; bottom: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 7rem; color: rgba(184,151,42,0.06); line-height: 1;
+    letter-spacing: -0.05em; pointer-events: none;
+  }
+
+  .slide-spine { position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, var(--gold), rgba(184,151,42,0.15)); }
+
+  .slide-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold-pale); text-align: center; line-height: 2;
+  }
+
+  .slide-divider { width: 28px; height: 0.5px; background: var(--gold); }
+  .slide-sublabel { font-size: 10px; letter-spacing: 0.2em; color: var(--text-muted); text-align: center; font-weight: 300; }
+
+  .slide-tag {
+    position: absolute; top: 14px; right: 14px;
+    font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+    background: rgba(184,151,42,0.12); border: 0.5px solid var(--border);
+    color: var(--gold); padding: 4px 10px; border-radius: 20px; font-weight: 400;
+  }
+
+  .slider-dots { display: flex; justify-content: center; gap: 6px; padding: 12px 0 8px; }
+
+  .dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(184,151,42,0.2); transition: background 0.2s, transform 0.2s; cursor: pointer; }
+  .dot.active { background: var(--gold); transform: scale(1.3); }
+
+  .slider-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(13,27,46,0.6); border: 0.5px solid var(--border);
+    color: var(--gold); width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 14px; z-index: 10; -webkit-tap-highlight-color: transparent;
+  }
+
+  .slider-arrow.prev { left: 10px; }
+  .slider-arrow.next { right: 10px; }
+
+  .s1-info { padding: 1.5rem 1.25rem; flex: 1; }
+
+  .s1-tag {
+    display: inline-block;
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 400;
+    background: rgba(184,151,42,0.1); border: 0.5px solid var(--border);
+    color: var(--gold); padding: 4px 10px; border-radius: 20px; margin-bottom: 1rem;
+  }
+
+  .s1-title { font-size: 1.35rem; font-weight: 500; color: var(--white); line-height: 1.3; margin-bottom: 4px; }
+  .s1-subtitle { font-size: 12px; color: var(--text-muted); font-weight: 300; margin-bottom: 1.5rem; }
+
+  .s1-price-row { display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; }
+  .s1-price { font-size: 1.5rem; font-weight: 500; color: var(--gold-light); }
+  .s1-price-note { font-size: 11px; color: var(--text-muted); font-weight: 300; }
+
+  .s1-features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 2rem; }
+
+  .s1-feature { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; color: var(--text-muted); font-weight: 300; line-height: 1.5; }
+  .s1-feature::before { content: '·'; color: var(--gold); font-size: 16px; line-height: 1.2; flex-shrink: 0; }
+  .s1-feature strong { color: var(--cream); font-weight: 400; }
+  .s1-feature .en { display: block; font-size: 11px; color: rgba(138,154,181,0.7); margin-top: 2px; font-weight: 300; }
+
+  .s1-btn-wrap {
+    padding: 1rem 1.25rem 2rem;
+    background: linear-gradient(to top, var(--navy) 60%, transparent);
+    position: sticky; bottom: 0;
+  }
+
+  .order-btn {
+    width: 100%; background: var(--gold); border: none; border-radius: 4px;
+    padding: 16px 24px; font-family: var(--font); font-size: 14px; font-weight: 500;
+    letter-spacing: 0.05em; color: var(--navy); cursor: pointer;
+    -webkit-tap-highlight-color: transparent; transition: background 0.15s;
+  }
+
+  .order-btn:active { background: var(--gold-light); }
+
+  /* ══ STEP 2 ══ */
+  #step2 { padding: 0 1.25rem 3rem; flex-direction: column; }
+
+  .s2-header {
+    padding: 1.5rem 0 1.2rem;
+    display: flex; align-items: center; gap: 12px;
+    border-bottom: 0.5px solid var(--border); margin-bottom: 1.8rem;
+  }
+
+  .back-btn {
+    background: none; border: 0.5px solid var(--border); border-radius: 50%;
+    width: 34px; height: 34px; cursor: pointer; color: var(--text-muted);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; -webkit-tap-highlight-color: transparent; flex-shrink: 0;
+  }
+
+  .back-btn:active { color: var(--gold); border-color: var(--gold); }
+
+  .s2-header-text h2 { font-size: 1rem; font-weight: 500; color: var(--white); }
+  .s2-header-text p { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 300; }
+
+  .mini-slider-wrap {
+    width: calc(100% + 2.5rem); margin-left: -1.25rem;
+    overflow: hidden; margin-bottom: 1.5rem;
+    border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
+  }
+
+  .mini-slider-track { display: flex; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); }
+
+  .mini-slide { min-width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; overflow: hidden; }
+  .mini-slide-1 { background: linear-gradient(145deg, #162640 0%, #0d1b2e 70%); }
+  .mini-slide-2 { background: linear-gradient(145deg, #1a2e4a 0%, #0f2035 70%); }
+  .mini-slide-3 { background: linear-gradient(145deg, #0e1f33 0%, #0a1520 70%); }
+
+  .mini-slide-spine { position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--gold), rgba(184,151,42,0.1)); }
+
+  .mini-slide-label { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-pale); text-align: center; line-height: 2; }
+
+  .mini-slide-num { position: absolute; right: 1rem; bottom: 0.5rem; font-family: 'Cormorant Garamond', serif; font-size: 4rem; color: rgba(184,151,42,0.06); line-height: 1; pointer-events: none; }
+
+  .mini-dots { display: flex; justify-content: center; gap: 5px; padding: 8px 0 6px; }
+  .mini-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(184,151,42,0.2); cursor: pointer; transition: background 0.2s; }
+  .mini-dot.active { background: var(--gold); }
+
+  .order-summary {
+    background: rgba(184,151,42,0.04); border: 0.5px solid var(--border); border-radius: 4px;
+    padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.8rem;
+  }
+
+  .order-summary-label { font-size: 10px; color: var(--text-muted); font-weight: 300; }
+  .order-summary-label strong { display: block; font-size: 13px; color: var(--cream); font-weight: 400; margin-top: 3px; }
+  .order-summary-price { font-size: 1.1rem; font-weight: 500; color: var(--gold-light); }
+
+  .form-section-title {
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500;
+    color: var(--gold); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px;
+  }
+
+  .form-section-title::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+
+  .field-group { margin-bottom: 1rem; }
+
+  label { display: block; font-size: 10px; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 7px; font-weight: 400; }
+
+  input {
+    width: 100%; background: rgba(255,255,255,0.03); border: 0.5px solid rgba(184,151,42,0.2);
+    border-radius: 4px; padding: 13px 14px; font-family: var(--font); font-size: 15px; font-weight: 300;
+    color: var(--cream); outline: none; transition: border-color 0.2s, background 0.2s; -webkit-appearance: none;
+  }
+
+  input::placeholder { color: rgba(138,154,181,0.4); }
+  input:focus { border-color: rgba(184,151,42,0.6); background: rgba(255,255,255,0.05); }
+
+  .divider { width: 100%; height: 0.5px; background: var(--border); margin: 1.5rem 0; }
+
+  .qty-control { display: flex; align-items: center; border: 0.5px solid rgba(184,151,42,0.2); border-radius: 4px; overflow: hidden; background: rgba(255,255,255,0.03); }
+
+  .qty-btn {
+    background: none; border: none; color: var(--gold); cursor: pointer;
+    width: 56px; height: 50px; font-size: 20px; font-weight: 300;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font); -webkit-tap-highlight-color: transparent;
+  }
+
+  .qty-btn:active { background: rgba(184,151,42,0.15); }
+
+  .qty-display { flex: 1; text-align: center; font-size: 16px; color: var(--cream); font-weight: 400; border-left: 0.5px solid rgba(184,151,42,0.15); border-right: 0.5px solid rgba(184,151,42,0.15); padding: 14px 0; }
+
+  .pickup-display { width: 100%; background: rgba(255,255,255,0.02); border: 0.5px solid rgba(184,151,42,0.1); border-radius: 4px; padding: 13px 14px; font-size: 13px; color: var(--text-muted); font-weight: 300; display: flex; align-items: center; justify-content: space-between; }
+  .pickup-display span { color: var(--cream); font-size: 13px; font-weight: 400; }
+
+  .total-bar { background: rgba(184,151,42,0.06); border: 0.5px solid var(--border); border-radius: 4px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; margin: 1.5rem 0; }
+  .total-label { font-size: 12px; color: var(--text-muted); font-weight: 300; }
+  .total-value { font-size: 1.3rem; font-weight: 500; color: var(--gold-light); }
+
+  .notice-box { background: rgba(184,151,42,0.04); border: 0.5px solid rgba(184,151,42,0.15); border-left: 2px solid var(--gold); border-radius: 0 4px 4px 0; padding: 11px 14px; font-size: 11px; line-height: 1.7; font-weight: 300; color: var(--text-muted); margin-bottom: 1.5rem; }
+  .notice-box strong { color: var(--cream); font-weight: 400; }
+
+  .submit-btn {
+    width: 100%; background: var(--gold); border: none; border-radius: 4px;
+    padding: 16px 24px; font-family: var(--font); font-size: 14px; font-weight: 500;
+    letter-spacing: 0.05em; color: var(--navy); cursor: pointer;
+    position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent;
+  }
+
+  .submit-btn:active { background: var(--gold-light); }
+  .submit-btn.loading { pointer-events: none; }
+  .submit-btn.loading #btnText { opacity: 0; }
+
+  .spinner { display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 18px; height: 18px; border: 2px solid rgba(13,27,46,0.3); border-top-color: var(--navy); border-radius: 50%; animation: spin 0.7s linear infinite; }
+  .submit-btn.loading .spinner { display: block; }
+  @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+  .form-note { margin-top: 1rem; font-size: 10px; color: var(--text-muted); text-align: center; line-height: 1.7; font-weight: 300; }
+
+  .error-msg { display: none; margin-top: 10px; font-size: 11px; color: #e05555; text-align: center; }
+  .error-msg.show { display: block; }
+
+  footer { padding: 2rem 0 1rem; border-top: 0.5px solid var(--border); margin-top: 2rem; }
+  .footer-biz { font-size: 10px; color: var(--text-muted); line-height: 1.9; font-weight: 300; margin-bottom: 1.2rem; }
+  .footer-biz-row { display: flex; gap: 8px; }
+  .footer-biz-row span { color: rgba(138,154,181,0.5); min-width: 110px; flex-shrink: 0; }
+  .footer-legal { display: flex; align-items: center; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
+  .legal-btn { background: none; border: none; color: var(--text-muted); font-size: 10px; font-family: var(--font); cursor: pointer; padding: 0; text-decoration: underline; font-weight: 300; }
+  .legal-btn:hover { color: var(--gold); }
+  .legal-sep { color: rgba(138,154,181,0.3); font-size: 10px; }
+  .footer-copy { font-size: 10px; color: rgba(138,154,181,0.4); font-weight: 300; }
+
+  .success-overlay { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(13,27,46,0.98); align-items: center; justify-content: center; flex-direction: column; gap: 1.2rem; padding: 2rem; }
+  .success-overlay.show { display: flex; }
+
+  .success-crest { width: 70px; height: 70px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--gold); }
+  .success-title { font-size: 1.3rem; font-weight: 500; color: var(--white); text-align: center; line-height: 1.5; }
+  .success-sub { font-size: 12px; color: var(--text-muted); text-align: center; max-width: 280px; line-height: 1.7; font-weight: 300; }
+</style>
+</head>
+<body>
+
+<div class="success-overlay" id="successOverlay">
+  <div class="success-crest">✓</div>
+  <div class="success-title">결제가 완료되었습니다<br><span style="font-size:0.85em;color:var(--gold-light);font-weight:300">Payment Complete</span></div>
+  <div class="success-sub">주문해 주셔서 감사합니다.<br>Thank you for your order.</div>
+</div>
+
+<!-- ══ STEP 1 ══ -->
+<div class="step active" id="step1">
+
+  <div class="s1-header">
+    <img src="https://i.ifh.cc/gWqgdn.png" alt="NLCS Jeju" class="nlcs-logo">
+    <div class="nlcs-crest">
+      <div class="nlcs-crest-icon">N</div>
+      <div class="nlcs-crest-label">NLCS Jeju</div>
+    </div>
+  </div>
+
+  <div class="slider-wrap">
+    <div class="slider-track" id="sliderTrack">
+      <div class="slide slide-1">
+        <div class="slide-spine"></div>
+        <div class="slide-tag">2026 Edition</div>
+        <div class="slide-inner">
+          <div class="slide-label">NLCS Jeju<br><span style="font-size:0.7rem;letter-spacing:0.35em;color:var(--text-muted)">Class of 2026</span></div>
+          <div class="slide-divider"></div>
+          <div class="slide-sublabel">Year Book · 졸업 앨범</div>
+        </div>
+        <div class="slide-book-num">26</div>
+      </div>
+      <div class="slide slide-2">
+        <div class="slide-spine"></div>
+        <div class="slide-tag">Cover</div>
+        <div class="slide-inner">
+          <div class="slide-label">Hardcover<br><span style="font-size:0.7rem;letter-spacing:0.35em;color:var(--text-muted)">Navy Edition</span></div>
+          <div class="slide-divider"></div>
+          <div class="slide-sublabel">Premium Binding</div>
+        </div>
+        <div class="slide-book-num">26</div>
+      </div>
+      <div class="slide slide-3">
+        <div class="slide-spine"></div>
+        <div class="slide-tag">Inside</div>
+        <div class="slide-inner">
+          <div class="slide-label">Full Colour<br><span style="font-size:0.7rem;letter-spacing:0.35em;color:var(--text-muted)">Print Quality</span></div>
+          <div class="slide-divider"></div>
+          <div class="slide-sublabel">High Resolution</div>
+        </div>
+        <div class="slide-book-num">26</div>
+      </div>
+    </div>
+    <button class="slider-arrow prev" onclick="slide(-1)">‹</button>
+    <button class="slider-arrow next" onclick="slide(1)">›</button>
+  </div>
+
+  <div class="slider-dots">
+    <div class="dot active" onclick="goSlide(0)"></div>
+    <div class="dot" onclick="goSlide(1)"></div>
+    <div class="dot" onclick="goSlide(2)"></div>
+  </div>
+
+  <div class="s1-info">
+    <div class="s1-tag">사전 주문 · Pre-Order</div>
+    <div class="s1-title">2026 NLCS Jeju Year Book</div>
+    <div class="s1-subtitle">NLCS Jeju · 졸업 앨범</div>
+
+    <div class="s1-price-row">
+      <div class="s1-price">₩58,300</div>
+      <div class="s1-price-note">/ 권당 · per copy</div>
+    </div>
+
+    <div class="s1-features">
+      <div class="s1-feature">
+        <div>
+          <strong>학교 수령</strong> — 배송 없음, 지정 장소에서 수령<br>
+          NLCS 본교에서 수령이 가능합니다.
+          <span class="en">No delivery. Pickup is available at NLCS Jeju school campus.</span>
+        </div>
+      </div>
+      <div class="s1-feature">
+        <div>
+          <strong>KG이니시스 보안 결제</strong>
+          <span class="en">Secured payment via KG Inicis.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="s1-btn-wrap">
+    <button class="order-btn" onclick="goToStep2()">주문하기 · Order Now</button>
+  </div>
+
+</div>
+
+<!-- ══ STEP 2 ══ -->
+<div class="step" id="step2">
+
+  <div class="s2-header">
+    <button class="back-btn" onclick="goToStep1()">←</button>
+    <div class="s2-header-text">
+      <h2>2026 NLCS Jeju Year Book</h2>
+      <p>사전 주문 · Pre-Order</p>
+    </div>
+  </div>
+
+  <div class="mini-slider-wrap">
+    <div class="mini-slider-track" id="miniTrack">
+      <div class="mini-slide mini-slide-1">
+        <div class="mini-slide-spine"></div>
+        <div class="mini-slide-label">NLCS Jeju · Class of 2026</div>
+        <div class="mini-slide-num">26</div>
+      </div>
+      <div class="mini-slide mini-slide-2">
+        <div class="mini-slide-spine"></div>
+        <div class="mini-slide-label">Hardcover · Navy Edition</div>
+        <div class="mini-slide-num">26</div>
+      </div>
+      <div class="mini-slide mini-slide-3">
+        <div class="mini-slide-spine"></div>
+        <div class="mini-slide-label">Full Colour · Print Quality</div>
+        <div class="mini-slide-num">26</div>
+      </div>
+    </div>
+    <div class="mini-dots">
+      <div class="mini-dot active" onclick="miniGoSlide(0)"></div>
+      <div class="mini-dot" onclick="miniGoSlide(1)"></div>
+      <div class="mini-dot" onclick="miniGoSlide(2)"></div>
+    </div>
+  </div>
+
+  <div class="order-summary">
+    <div class="order-summary-label">
+      주문 상품
+      <strong>2026 NLCS Jeju Year Book</strong>
+    </div>
+    <div class="order-summary-price">₩58,300</div>
+  </div>
+
+  <form id="orderForm" onsubmit="handleSubmit(event)">
+
+    <div class="form-section-title">결제 정보</div>
+
+    <div class="field-group">
+      <label for="studentName">학생 이름 · Student Full Name *</label>
+      <input type="text" id="studentName" placeholder="학생 이름 입력" required autocomplete="off">
+    </div>
+
+    <div class="field-group">
+      <label for="parentName">학부모 이름 · Parent / Guardian Name *</label>
+      <input type="text" id="parentName" placeholder="보호자 성함 입력" required autocomplete="off">
+    </div>
+
+    <div class="field-group">
+      <label for="contact">연락처 · Contact Number *</label>
+      <input type="tel" id="contact" placeholder="010-0000-0000" required autocomplete="off">
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="field-group">
+      <label>수량 · Quantity (최소 1권)</label>
+      <div class="qty-control">
+        <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
+        <div class="qty-display" id="qtyDisplay">1</div>
+        <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label>수령 방법 · Pickup Method</label>
+      <div class="pickup-display">
+        수령 방법 <span>학교 수령 (School Pickup)</span>
+      </div>
+    </div>
+
+    <div class="total-bar">
+      <div class="total-label">합계 · Total</div>
+      <div class="total-value" id="totalDisplay">₩58,300</div>
+    </div>
+
+    <div class="notice-box">
+      <strong>안내</strong> — KG이니시스 보안 결제 페이지로 이동합니다. 결제 완료 후 주문이 확정됩니다.<br>
+      <span style="font-size:10px;">You will be redirected to a secure KG Inicis payment page. Your order will be confirmed upon successful payment.</span>
+    </div>
+
+    <div class="error-msg" id="errorMsg"></div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">
+      <span class="spinner"></span>
+      <span id="btnText">결제하기 · Proceed to Payment</span>
+    </button>
+
+    <div class="form-note">
+      KG이니시스 보안 결제 · Secured by KG Inicis<br>
+      © 2026 jejudesignpark Co., Ltd.
+    </div>
+
+  </form>
+
+  <footer>
+    <div class="footer-biz">
+      <div class="footer-biz-row"><span>상호명</span> 제주디자인파크주식회사</div>
+      <div class="footer-biz-row"><span>대표이사</span> 박낙원</div>
+      <div class="footer-biz-row"><span>사업자등록번호</span> 616-86-07855</div>
+      <div class="footer-biz-row"><span>통신판매업 신고번호</span> 제2021-제주중앙-018호</div>
+      <div class="footer-biz-row"><span>주소</span> 제주특별자치도 서귀포시 일주동로 8766, 지하1층</div>
+      <div class="footer-biz-row"><span>전화</span> 064-763-6755</div>
+      <div class="footer-biz-row"><span>이메일</span> jdpprint@naver.com</div>
+      <div class="footer-biz-row"><span>운영시간</span> 평일 09:00 – 18:00 (주말·공휴일 휴무)</div>
+    </div>
+    <div class="footer-legal">
+      <button class="legal-btn" onclick="showModal('terms')">이용약관</button>
+      <span class="legal-sep">·</span>
+      <button class="legal-btn" onclick="showModal('privacy')">개인정보처리방침</button>
+      <span class="legal-sep">·</span>
+      <button class="legal-btn" onclick="showModal('refund')">환불정책</button>
+    </div>
+    <div class="footer-copy">© 2026 jejudesignpark Co., Ltd. All rights reserved.</div>
+  </footer>
+
+</div>
+
+<!-- 약관 모달 -->
+<div id="legalModal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.85);padding:1.5rem;overflow-y:auto;">
+  <div style="background:#162640;border-radius:8px;padding:1.5rem;max-width:480px;margin:0 auto;position:relative;">
+    <button onclick="closeModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--text-muted);font-size:1.2rem;cursor:pointer;">✕</button>
+    <div id="modalTitle" style="font-size:13px;font-weight:500;color:var(--gold);letter-spacing:0.1em;margin-bottom:1rem;padding-right:2rem;"></div>
+    <div id="modalBody" style="font-size:12px;color:var(--text-muted);line-height:1.8;font-weight:300;white-space:pre-line;"></div>
+  </div>
+</div>
+
+<script>
+  let qty = 1;
+  const unitPrice = 58300;
+  let curSlide = 0;
+  let miniCurSlide = 0;
+  const totalSlides = 3;
+
+  // ── 포트원 가맹점 식별코드 ──
+  // 포트원 콘솔 → 상점·계정 관리 → 내 식별코드에서 확인 후 아래 교체
+  const IMP_CODE = 'imp78148182';
+
+  function slide(dir) { curSlide = (curSlide + dir + totalSlides) % totalSlides; updateSlider(); }
+  function goSlide(idx) { curSlide = idx; updateSlider(); }
+
+  function updateSlider() {
+    document.getElementById('sliderTrack').style.transform = 'translateX(-' + (curSlide * 100) + '%)';
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === curSlide));
+  }
+
+  function miniGoSlide(idx) {
+    miniCurSlide = idx;
+    document.getElementById('miniTrack').style.transform = 'translateX(-' + (miniCurSlide * 100) + '%)';
+    document.querySelectorAll('.mini-dot').forEach((d, i) => d.classList.toggle('active', i === miniCurSlide));
+  }
+
+  function addSwipe(trackId, slideFn) {
+    const el = document.getElementById(trackId);
+    let startX = 0;
+    el.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    el.addEventListener('touchend', e => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) slideFn(diff > 0 ? 1 : -1);
+    });
+  }
+
+  addSwipe('sliderTrack', slide);
+  addSwipe('miniTrack', d => { miniCurSlide = (miniCurSlide + d + totalSlides) % totalSlides; miniGoSlide(miniCurSlide); });
+
+  function changeQty(delta) {
+    qty = Math.max(1, qty + delta);
+    document.getElementById('qtyDisplay').textContent = qty;
+    document.getElementById('totalDisplay').textContent = '₩' + (unitPrice * qty).toLocaleString('ko-KR');
+  }
+
+  function goToStep2() {
+    document.getElementById('step1').classList.remove('active');
+    document.getElementById('step2').classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function goToStep1() {
+    document.getElementById('step2').classList.remove('active');
+    document.getElementById('step1').classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  const legalContent = {
+    terms: {
+      title: '이용약관 · Terms of Service',
+      body: `본 서비스는 NLCS Jeju 2026 졸업앨범 구매를 위한 사전결제 시스템입니다.
+
+1. 결제 완료된 앨범은 추후 학교에서 지정된 일시에 현장 수령이 가능합니다.
+2. 수령 장소 및 일정은 별도 안내 예정입니다.
+3. 본 상품은 주문 제작 상품으로, 제작 공정이 시작된 이후에는 단순 변심에 의한 환불이 불가합니다.
+4. 결제 시 입력하신 정보는 주문 확인 및 현장 수령 확인 목적으로만 사용됩니다.
+
+This service is a pre-payment system for purchasing the NLCS Jeju 2026 Yearbook. The yearbook will be available for on-site pickup at the school at a designated time and location to be announced separately.`
+    },
+    privacy: {
+      title: '개인정보처리방침 · Privacy Policy',
+      body: `제주디자인파크주식회사는 NLCS Jeju 졸업앨범 주문 처리를 위해 아래와 같이 개인정보를 수집·이용합니다.
+
+■ 수집 항목
+- 학생 이름, 학부모(보호자) 이름, 연락처
+
+■ 수집 목적
+- 주문 확인 및 학교 내 현장 수령 확인
+
+■ 보유 기간
+- 학기 종료 및 목적 달성 후 즉시 파기
+
+■ 제3자 제공
+- 수집된 개인정보는 결제 처리를 위해 KG이니시스에 제공됩니다.
+
+The personal information collected (student name, guardian name, contact number) is used solely for order confirmation and yearbook pickup verification, and will be deleted immediately after the purpose is fulfilled.`
+    },
+    refund: {
+      title: '환불정책 · Refund Policy',
+      body: `본 상품은 주문 제작 상품으로, 아래의 환불 정책이 적용됩니다.
+
+■ 환불 불가 사유
+- 제작 공정이 시작된 이후 단순 변심에 의한 환불 불가
+
+■ 환불 가능 사유
+- 제품의 명백한 결함이 있을 경우 교환 가능
+
+■ 문의
+- 이메일: jdpprint@naver.com
+- 전화: 064-763-6755
+
+This product is a custom-made item. Refunds due to simple change of mind are not accepted once production has begun. Exchange is available in case of a clear product defect.`
+    }
+  };
+
+  function showModal(type) {
+    const modal = document.getElementById('legalModal');
+    document.getElementById('modalTitle').textContent = legalContent[type].title;
+    document.getElementById('modalBody').textContent = legalContent[type].body;
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('legalModal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const studentName = document.getElementById('studentName').value.trim();
+    const parentName = document.getElementById('parentName').value.trim();
+    const contact = document.getElementById('contact').value.trim();
+    const errorMsg = document.getElementById('errorMsg');
+    const btn = document.getElementById('submitBtn');
+
+    errorMsg.classList.remove('show');
+    btn.classList.add('loading');
+
+    const merchantUid = 'nlcs_' + new Date().getTime();
+    const totalAmount = unitPrice * qty;
+
+    IMP.init(IMP_CODE);
+
+    IMP.request_pay({
+      pg: 'html5_inicis',
+      pay_method: 'card',
+      merchant_uid: merchantUid,
+      name: '2026 NLCS Jeju Year Book x' + qty,
+      amount: totalAmount,
+      buyer_name: parentName,
+      buyer_tel: contact,
+      custom_data: {
+        student_name: studentName,
+        parent_name: parentName,
+        contact: contact,
+        quantity: qty,
+        pickup_method: '학교 수령'
+      }
+    }, function(rsp) {
+      btn.classList.remove('loading');
+      if (rsp.success) {
+        document.getElementById('successOverlay').classList.add('show');
+      } else {
+        errorMsg.textContent = '결제 실패: ' + rsp.error_msg;
+        errorMsg.classList.add('show');
+      }
+    });
+  }
+</script>
+</body>
+</html>

@@ -6,6 +6,7 @@
 <title>2026 NLCS Jeju Year Book — Pre-Order</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -454,7 +455,7 @@
   let qty = 1;
   const unitPrice = 58300;
   // ── 포트원 가맹점 식별코드 ──
-  const IMP_CODE = 'imp78148182';
+  const STORE_ID = 'store-8e521873-f213-4309-b65e-2ee11b785e5e';
 
   // 미니 슬라이더
   let miniCurSlide = 0;
@@ -584,32 +585,33 @@ This product is a custom-made item. Refunds due to simple change of mind are not
     const merchantUid = 'nlcs_' + new Date().getTime();
     const totalAmount = unitPrice * qty;
 
-    IMP.init(IMP_CODE);
-
-    IMP.request_pay({
-      channel_key: 'channel-key-91354512-d179-404a-bec9-8f2a55bf734b',
-      pay_method: 'card',
-      merchant_uid: merchantUid,
-      name: '2026 NLCS Jeju Year Book x' + qty,
-      amount: totalAmount,
-      buyer_name: studentName + '/' + parentName,
-      buyer_tel: contact,
-      buyer_email: '',
-      custom_data: JSON.stringify({
+    PortOne.requestPayment({
+      storeId: STORE_ID,
+      channelKey: 'channel-key-91354512-d179-404a-bec9-8f2a55bf734b',
+      paymentId: merchantUid,
+      orderName: '2026 NLCS Jeju Year Book x' + qty,
+      totalAmount: totalAmount,
+      currency: 'KRW',
+      payMethod: 'CARD',
+      customer: {
+        fullName: studentName + '/' + parentName,
+        phoneNumber: contact,
+      },
+      customData: {
         student_name: studentName,
         parent_name: parentName,
         contact: contact,
         quantity: qty,
         pickup_method: '학교 수령'
-      })
-    }, function(rsp) {
+      }
+    }).then(function(rsp) {
       btn.classList.remove('loading');
-      if (rsp.success) {
+      if (rsp && !rsp.code) {
         document.getElementById('successQty').textContent = qty;
         document.getElementById('successTotal').textContent = '₩' + (unitPrice * qty).toLocaleString('ko-KR');
         document.getElementById('successOverlay').classList.add('show');
       } else {
-        errorMsg.textContent = '결제 실패: ' + rsp.error_msg;
+        errorMsg.textContent = '결제 실패: ' + (rsp && rsp.message ? rsp.message : '다시 시도해 주세요.');
         errorMsg.classList.add('show');
       }
     });

@@ -57,66 +57,17 @@
 
   .nlcs-crest-label { font-size: 10px; letter-spacing: 0.1em; color: var(--text-muted); font-weight: 300; }
 
-  .slider-wrap {
-    width: 100%; position: relative; overflow: hidden;
-    background: var(--navy-mid);
-    border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
+  .hero-img-wrap {
+    width: 100%;
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+    overflow: hidden;
   }
 
-  .slider-track { display: flex; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
-
-  .slide {
-    min-width: 100%; height: 300px;
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden; flex-shrink: 0;
+  .hero-img {
+    width: 100%; display: block;
+    object-fit: cover;
   }
-
-  .slide-1 { background: linear-gradient(145deg, #162640 0%, #0d1b2e 70%); }
-  .slide-2 { background: linear-gradient(145deg, #1a2e4a 0%, #0f2035 70%); }
-  .slide-3 { background: linear-gradient(145deg, #0e1f33 0%, #0a1520 70%); }
-
-  .slide-inner { display: flex; flex-direction: column; align-items: center; gap: 14px; position: relative; z-index: 1; }
-
-  .slide-book-num {
-    position: absolute; right: 1.5rem; bottom: 1rem;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 7rem; color: rgba(184,151,42,0.06); line-height: 1;
-    letter-spacing: -0.05em; pointer-events: none;
-  }
-
-  .slide-spine { position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, var(--gold), rgba(184,151,42,0.15)); }
-
-  .slide-label {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--gold-pale); text-align: center; line-height: 2;
-  }
-
-  .slide-divider { width: 28px; height: 0.5px; background: var(--gold); }
-  .slide-sublabel { font-size: 10px; letter-spacing: 0.2em; color: var(--text-muted); text-align: center; font-weight: 300; }
-
-  .slide-tag {
-    position: absolute; top: 14px; right: 14px;
-    font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
-    background: rgba(184,151,42,0.12); border: 0.5px solid var(--border);
-    color: var(--gold); padding: 4px 10px; border-radius: 20px; font-weight: 400;
-  }
-
-  .slider-dots { display: flex; justify-content: center; gap: 6px; padding: 12px 0 8px; }
-
-  .dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(184,151,42,0.2); transition: background 0.2s, transform 0.2s; cursor: pointer; }
-  .dot.active { background: var(--gold); transform: scale(1.3); }
-
-  .slider-arrow {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    background: rgba(13,27,46,0.6); border: 0.5px solid var(--border);
-    color: var(--gold); width: 32px; height: 32px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; font-size: 14px; z-index: 10; -webkit-tap-highlight-color: transparent;
-  }
-
-  .slider-arrow.prev { left: 10px; }
-  .slider-arrow.next { right: 10px; }
 
   .s1-info { padding: 1.5rem 1.25rem; flex: 1; }
 
@@ -179,24 +130,30 @@
 
   .mini-slider-wrap {
     width: calc(100% + 2.5rem); margin-left: -1.25rem;
-    overflow: hidden; margin-bottom: 1.5rem;
+    overflow: hidden; margin-bottom: 0;
     border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
+    position: relative;
   }
 
   .mini-slider-track { display: flex; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); }
 
-  .mini-slide { min-width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; overflow: hidden; }
-  .mini-slide-1 { background: linear-gradient(145deg, #162640 0%, #0d1b2e 70%); }
-  .mini-slide-2 { background: linear-gradient(145deg, #1a2e4a 0%, #0f2035 70%); }
-  .mini-slide-3 { background: linear-gradient(145deg, #0e1f33 0%, #0a1520 70%); }
+  .mini-slide { min-width: 100%; flex-shrink: 0; overflow: hidden; }
 
-  .mini-slide-spine { position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--gold), rgba(184,151,42,0.1)); }
+  .mini-slide-img { width: 100%; height: 200px; object-fit: cover; object-position: center; display: block; }
 
-  .mini-slide-label { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-pale); text-align: center; line-height: 2; }
+  .mini-arrow {
+    position: absolute; top: 50%; transform: translateY(-60%);
+    background: rgba(13,27,46,0.6); border: 0.5px solid var(--border);
+    color: var(--gold); width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 14px; z-index: 10;
+    -webkit-tap-highlight-color: transparent;
+  }
 
-  .mini-slide-num { position: absolute; right: 1rem; bottom: 0.5rem; font-family: 'Cormorant Garamond', serif; font-size: 4rem; color: rgba(184,151,42,0.06); line-height: 1; pointer-events: none; }
+  .mini-prev { left: 10px; }
+  .mini-next { right: 10px; }
 
-  .mini-dots { display: flex; justify-content: center; gap: 5px; padding: 8px 0 6px; }
+  .mini-dots { display: flex; justify-content: center; gap: 5px; padding: 8px 0 6px; background: var(--navy); }
   .mini-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(184,151,42,0.2); cursor: pointer; transition: background 0.2s; }
   .mini-dot.active { background: var(--gold); }
 
@@ -317,47 +274,8 @@
     </div>
   </div>
 
-  <div class="slider-wrap">
-    <div class="slider-track" id="sliderTrack">
-      <div class="slide slide-1">
-        <div class="slide-spine"></div>
-        <div class="slide-tag">2026 Edition</div>
-        <div class="slide-inner">
-          <div class="slide-label">NLCS Jeju<br><span style="font-size:0.7rem;letter-spacing:0.35em;color:var(--text-muted)">Class of 2026</span></div>
-          <div class="slide-divider"></div>
-          <div class="slide-sublabel">Year Book · 졸업 앨범</div>
-        </div>
-        <div class="slide-book-num">26</div>
-      </div>
-      <div class="slide slide-2">
-        <div class="slide-spine"></div>
-        <div class="slide-tag">Cover</div>
-        <div class="slide-inner">
-          <div class="slide-label">Hardcover<br><span style="font-size:0.7rem;letter-spacing:0.35em;color:var(--text-muted)">Navy Edition</span></div>
-          <div class="slide-divider"></div>
-          <div class="slide-sublabel">Premium Binding</div>
-        </div>
-        <div class="slide-book-num">26</div>
-      </div>
-      <div class="slide slide-3">
-        <div class="slide-spine"></div>
-        <div class="slide-tag">Inside</div>
-        <div class="slide-inner">
-          <div class="slide-label">Full Colour<br><span style="font-size:0.7rem;letter-spacing:0.35em;color:var(--text-muted)">Print Quality</span></div>
-          <div class="slide-divider"></div>
-          <div class="slide-sublabel">High Resolution</div>
-        </div>
-        <div class="slide-book-num">26</div>
-      </div>
-    </div>
-    <button class="slider-arrow prev" onclick="slide(-1)">‹</button>
-    <button class="slider-arrow next" onclick="slide(1)">›</button>
-  </div>
-
-  <div class="slider-dots">
-    <div class="dot active" onclick="goSlide(0)"></div>
-    <div class="dot" onclick="goSlide(1)"></div>
-    <div class="dot" onclick="goSlide(2)"></div>
+  <div class="hero-img-wrap">
+    <img src="https://i.ifh.cc/0CHmbO.jpg" alt="2026 NLCS Jeju Year Book" class="hero-img">
   </div>
 
   <div class="s1-info">
@@ -418,22 +336,18 @@
 
   <div class="mini-slider-wrap">
     <div class="mini-slider-track" id="miniTrack">
-      <div class="mini-slide mini-slide-1">
-        <div class="mini-slide-spine"></div>
-        <div class="mini-slide-label">NLCS Jeju · Class of 2026</div>
-        <div class="mini-slide-num">26</div>
+      <div class="mini-slide">
+        <img src="https://i.ifh.cc/0Cfm85.jpg" alt="Year Book 1" class="mini-slide-img">
       </div>
-      <div class="mini-slide mini-slide-2">
-        <div class="mini-slide-spine"></div>
-        <div class="mini-slide-label">Hardcover · Navy Edition</div>
-        <div class="mini-slide-num">26</div>
+      <div class="mini-slide">
+        <img src="https://i.ifh.cc/6xFLoQ.jpg" alt="Year Book 2" class="mini-slide-img">
       </div>
-      <div class="mini-slide mini-slide-3">
-        <div class="mini-slide-spine"></div>
-        <div class="mini-slide-label">Full Colour · Print Quality</div>
-        <div class="mini-slide-num">26</div>
+      <div class="mini-slide">
+        <img src="https://i.ifh.cc/cPMq3l.jpg" alt="Year Book 3" class="mini-slide-img">
       </div>
     </div>
+    <button class="mini-arrow mini-prev" onclick="miniSlide(-1)">‹</button>
+    <button class="mini-arrow mini-next" onclick="miniSlide(1)">›</button>
     <div class="mini-dots">
       <div class="mini-dot active" onclick="miniGoSlide(0)"></div>
       <div class="mini-dot" onclick="miniGoSlide(1)"></div>
@@ -545,20 +459,16 @@
 <script>
   let qty = 1;
   const unitPrice = 58300;
-  let curSlide = 0;
-  let miniCurSlide = 0;
-  const totalSlides = 3;
-
   // ── 포트원 가맹점 식별코드 ──
-  // 포트원 콘솔 → 상점·계정 관리 → 내 식별코드에서 확인 후 아래 교체
   const IMP_CODE = 'imp78148182';
 
-  function slide(dir) { curSlide = (curSlide + dir + totalSlides) % totalSlides; updateSlider(); }
-  function goSlide(idx) { curSlide = idx; updateSlider(); }
+  // 미니 슬라이더
+  let miniCurSlide = 0;
+  const miniTotal = 3;
 
-  function updateSlider() {
-    document.getElementById('sliderTrack').style.transform = 'translateX(-' + (curSlide * 100) + '%)';
-    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === curSlide));
+  function miniSlide(dir) {
+    miniCurSlide = (miniCurSlide + dir + miniTotal) % miniTotal;
+    miniGoSlide(miniCurSlide);
   }
 
   function miniGoSlide(idx) {
@@ -567,18 +477,17 @@
     document.querySelectorAll('.mini-dot').forEach((d, i) => d.classList.toggle('active', i === miniCurSlide));
   }
 
-  function addSwipe(trackId, slideFn) {
-    const el = document.getElementById(trackId);
+  // 터치 스와이프
+  (function() {
     let startX = 0;
+    const el = document.getElementById('miniTrack');
+    if (!el) return;
     el.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
     el.addEventListener('touchend', e => {
       const diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) slideFn(diff > 0 ? 1 : -1);
+      if (Math.abs(diff) > 40) miniSlide(diff > 0 ? 1 : -1);
     });
-  }
-
-  addSwipe('sliderTrack', slide);
-  addSwipe('miniTrack', d => { miniCurSlide = (miniCurSlide + d + totalSlides) % totalSlides; miniGoSlide(miniCurSlide); });
+  })();
 
   function changeQty(delta) {
     qty = Math.max(1, qty + delta);

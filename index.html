@@ -603,13 +603,7 @@ This product is a custom-made item. Refunds due to simple change of mind are not
         phoneNumber: contact,
         email: document.getElementById('email').value.trim() || 'order@nlcsyearbook.co.kr',
       },
-      customData: {
-        student_name: studentName,
-        parent_name: parentName,
-        contact: contact,
-        quantity: qty,
-        pickup_method: 'School Pickup'
-      }
+
     }).then(function(rsp) {
       btn.classList.remove('loading');
       if (rsp && !rsp.code) {
